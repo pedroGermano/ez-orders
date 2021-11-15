@@ -1,11 +1,46 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+
+const cardStatusVariants = {
+  PREPARING: css`
+        background: #f6a609;
+        color: #fff;
+
+        header small{
+          background: #fff;
+          color: #0a100d;
+        }
+
+        select {
+          border-color: #fff;
+        }
+      `,
+
+  DONE: css`
+        background: #2ac769;
+        color: #fff;
+
+        header small {
+          background: #fff;
+          color: #0a100d;
+        }
+
+        select {
+          border-color: #fff;
+        }
+      `,
+
+}
+
 
 export const Container = styled.div`
     margin-top: 42px;
-
     display: grid;
     grid-gap: 1.6rem;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
+
+    @media (min-width: 658px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
 
 `;
 
