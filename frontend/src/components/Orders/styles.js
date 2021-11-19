@@ -2,46 +2,43 @@ import styled, { css } from "styled-components";
 
 const cardStatusVariants = {
   PREPARING: css`
-        background: #f6a609;
-        color: #fff;
+    background: #f6a609;
+    color: #fff;
 
-        header small{
-          background: #fff;
-          color: #0a100d;
-        }
-
-        select {
-          border-color: #fff;
-        }
-      `,
-
-  DONE: css`
-        background: #2ac769;
-        color: #fff;
-
-        header small {
-          background: #fff;
-          color: #0a100d;
-        }
-
-        select {
-          border-color: #fff;
-        }
-      `,
-
-}
-
-
-export const Container = styled.div`
-    margin-top: 42px;
-    display: grid;
-    grid-gap: 1.6rem;
-    grid-template-columns: 1fr;
-
-    @media (min-width: 658px) {
-      grid-template-columns: repeat(2, 1fr);
+    header small {
+      background: #fff;
+      color: #0a100d;
     }
 
+    select {
+      border-color: #fff;
+    }
+  `,
+
+  DONE: css`
+    background: #2ac769;
+    color: #fff;
+
+    header small {
+      background: #fff;
+      color: #0a100d;
+    }
+
+    select {
+      border-color: #fff;
+    }
+  `,
+};
+
+export const Container = styled.div`
+  margin-top: 42px;
+  display: grid;
+  grid-gap: 1.6rem;
+  grid-template-columns: 1fr;
+
+  @media (min-width: 658px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 `;
 
 export const Card = styled.div`
@@ -54,12 +51,12 @@ export const Card = styled.div`
     display: flex;
     justify-content: space-between;
 
-    h3{
+    h3 {
       font-weight: 500;
       font-size: 18px;
     }
 
-    small{
+    small {
       padding: 4px 8px;
       background: #ccc;
       color: #fff;
@@ -69,12 +66,12 @@ export const Card = styled.div`
     }
   }
 
-  p{
+  p {
     font-size: 14px;
     margin-top: 16px;
   }
 
-  select{
+  select {
     height: 45px;
     margin-top: 8px;
     padding: 0 8px;
@@ -84,4 +81,6 @@ export const Card = styled.div`
     border: 2px solid #ccc;
     background: #fff;
   }
+
+  ${({ status }) => cardStatusVariants[status] || null}
 `;

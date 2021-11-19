@@ -1,45 +1,36 @@
+import { useEffect, useState } from "react";
 import { Container, Card } from "./styles";
 
 export default function Orders() {
+  const [orders, setOrders] = useState([]);
+  useEffect(() => {
+    (async () => {
+      const res = await fetch("http://localhost:3001/orders");
+      const orders = await res.json();
+      setOrders(orders);
+    })();
+  }, []);
+
   return (
     <>
       <Container>
-       <Card>
-         <header>
-          <h3>Pedido <strong>#9123123123</strong></h3>
-          <small>Mesa #01</small>
-         </header>
-         <p>
-           Lorem ipsum dolor sit amet consectetur adipisicing elit.
-           Corrupti sapiente cupiditate iusto est voluptatum fugiat recusandae eum!
-         </p>
-         <select>
-           <option value="PEDING">Pendente</option>
-           <option value="PREPARING">Preparando</option>
-           <option value="DONE">Finalizado</option>
-         </select>
-        </Card>
-
-        <Card>
-         <header>
-          <h3>Pedido <strong>#9123123123</strong></h3>
-          <small>Mesa #01</small>
-         </header>
-         <p>
-           Lorem ipsum dolor sit amet consectetur adipisicing elit.
-           Corrupti sapiente cupiditate iusto est voluptatum fugiat recusandae eum!
-         </p>
-         <select>
-           <option value="PEDING">Pendente</option>
-           <option value="PREPARING">Preparando</option>
-           <option value="DONE">Finalizado</option>
-         </select>
-        </Card>
+        {orders.map((order) => (
+          <Card key={order._id} status={order.status}>
+            <header>
+              <h3>
+                Pedido <strong>#{order._id.substr(0, 15)}</strong>
+              </h3>
+              <small>Mesa #{order.table}</small>
+            </header>
+            <p>{order.description}</p>
+            <select select={order.status}>
+              <option value="PEDING">Pendente</option>
+              <option value="PREPARING">Preparando</option>
+              <option value="DONE">Finalizado</option>
+            </select>
+          </Card>
+        ))}
       </Container>
     </>
   );
 }
-
-
-
-
